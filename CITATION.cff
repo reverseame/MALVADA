@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the following article."
+title: "The Impact of Machine Learning on Scientific Research"
+authors:
+  - family-names: "Raducu"
+    given-names: "Razvan"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0002-8938-755X"
+  - family-names: "Alain"
+    given-names: "Villagrasa-Labrador"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0009-0005-8644-7376"
+  - family-names: "Ricardo J."
+    given-names: "Rodríguez"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0001-7982-0359"
+  - family-names: "Pedro"
+    given-names: "Álvarez"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0002-6584-7259"
+date-released: "TBD"
+url: "TBD"
+version: "1.0"
+doi: "TBD"
+keywords:
+  - malware
+  - dataset
+abstract: "TBD"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Raducu"
+    given-names: "Razvan"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0002-8938-755X"
+  - family-names: "Alain"
+    given-names: "Villagrasa-Labrador"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0009-0005-8644-7376"
+  - family-names: "Ricardo J."
+    given-names: "Rodríguez"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0001-7982-0359"
+  - family-names: "Pedro"
+    given-names: "Álvarez"
+    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+    orcid: "https://orcid.org/0000-0002-6584-7259"
+  doi: "TBD"
+  journal: "TBD"
+  month: TBD
+  start: TBD # First page number
+  end: TBD # Last page number
+  title: "TBD"
+  issue: TBD
+  volume: TBD
+  year: TBD

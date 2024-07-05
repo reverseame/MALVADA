@@ -1,0 +1,6 @@
+matplotlib==3.8.2
+pandas==2.2.2
+rich==13.7.1
+seaborn==0.13.2
+ujson==5.9.0
+avclass-malicialab==2.8.8
