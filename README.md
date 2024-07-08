@@ -1,6 +1,6 @@
-# MALVADA
+# MALVADA - A Windows Malware Execution Traces Dataset generation framework. 
 
-This framework parses one or more CAPE JSON reports and provides several useful stats about their contents.
+MALVADA is a framework that parses one or more [CAPE](https://github.com/kevoreilly/CAPEv2) `.json` reports, processes them in [different phases](https://github.com/reverseame/MALVADA/blob/main/src/malvada.py#L89), moves them into different folders and provides several statistics about their contents. The main objective of MALVADA is helping at generating datasets. Specifically, datasets of reports generated with CAPE *(although it can be extended to other sandboxing engines format)*.
 
 ## Installation
 
@@ -15,10 +15,12 @@ $ pip3 install avclass-malicialab
 ```
 
 ## Usage
-To use this framework you only need to place in the same directory the set of `.json` reports you want to process. Then simply invoke the tool:
+To use this framework you only need execute the main script `malvada.py` ([/src/malvada.py](/src/malvada.py)) and pass the path to a `directory` that contains the set of `.json` reports you want to process:
 ```
 $ python3 malvada.py directory
 ```
+**NOTE:** The phases MALVADA comprises can be invoked individually, by calling [their respective scripts](./src/malvada_workflow).
+
 The tool will process al the reports in `directory` and move them in their corresponding folders, if that is the case. You can test the tool using the report samples provided in [test_reports](./test_reports).
 
 The *help* message is printed with the `-h` flag:
@@ -41,6 +43,14 @@ options:
   -a ANONIMIZE_TERMS, --anonimize-terms ANONIMIZE_TERMS
                         Replace the terms in the file provided with [REDACTED], one by line (default: 'terms_to_anonymize.txt').
 ```
+### Phases of MALVADA
+MALVADA processes the reports in the following phases:
+1. Detec *incorrect* reports. That is, those malformatted for some reason (no execution, crashes, etc...).
+2. Remove duplicate reports (based on the SHA512 of the submitted sample).
+3. Sanitize and anonymize reports. That is, delete sensitive information and terms by default specified in `terms_to_anonymize.txt` .
+4. Add avclass_labels to report. That is, parse the results of all vendors from VT, transform them into a valid input for AVClass and invoke AVClass. The result of the AVClass' consesus is added in the key `avclass_detection`.
+5. Generate statistics.
+
 ### Example
 Output after executing MALVADA with the [test_reports](./test_reports):
 `$ python3 malvada.py test_reports`
