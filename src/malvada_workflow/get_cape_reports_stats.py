@@ -267,6 +267,12 @@ def main(json_files: list, silent: bool, vt_positives_threshold: int, progress: 
 
     stats = ReportStats(silent, vt_positives_threshold)
     stats.total_reports_in_folder = len(json_files)
+
+    # Check if there are no reports within the directory
+    if not stats.total_reports_in_folder:
+        progress.console.log(f"Error: No reports found.")
+        exit()
+
     if not silent:
         progress.console.log(
             f"[+] Total reports: [medium_violet_red]{stats.total_reports_in_folder}")

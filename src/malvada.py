@@ -75,6 +75,13 @@ def main() -> None:
     if not args.silent:
         progress.console.rule(
             "[bold green]MALVADA", style="green")
+
+    # Check if there are no reports within the directory
+    if not total_reports:
+        progress.console.log(f"Error: No reports found.")
+        exit()
+
+    if not args.silent:
         progress.console.log(f"[+] Total workers: [green]{args.workers}")
         progress.console.log(f"[+] Total reports: [green]{total_reports}")
         progress.console.log(

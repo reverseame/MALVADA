@@ -143,6 +143,12 @@ def main(json_files: list, silent: bool, terms_file: str, progress: Progress, wo
     """
 
     total_reports_in_folder = len(json_files)
+
+    # Check if there are no reports within the directory
+    if not total_reports_in_folder:
+        progress.console.log(f"Error: No reports found.")
+        exit()
+        
     task = None
 
     if not silent:

@@ -164,6 +164,11 @@ def main(json_files: list, silent: bool, progress: Progress) -> tuple:
     Path(ERRORS_DIR).mkdir(parents=True, exist_ok=True)
     stats.total_reports_in_folder = len(json_files)
 
+    # Check if there are no reports within the directory
+    if not stats.total_reports_in_folder:
+        progress.console.log(f"Error: No reports found.")
+        exit()
+
     task = None
     if not silent:
         task = progress.add_task("[magenta]Detect incorrect reports",
