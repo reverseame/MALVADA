@@ -268,11 +268,6 @@ def main(json_files: list, silent: bool, vt_positives_threshold: int, progress: 
     stats = ReportStats(silent, vt_positives_threshold)
     stats.total_reports_in_folder = len(json_files)
 
-    # Check if there are no reports within the directory
-    if not stats.total_reports_in_folder:
-        progress.console.log(f"Error: No reports found.")
-        exit()
-
     if not silent:
         progress.console.log(
             f"[+] Total reports: [medium_violet_red]{stats.total_reports_in_folder}")
@@ -317,7 +312,16 @@ if __name__ == "__main__":
     if not args.silent:
         progress.start()
         progress.console.rule("[bold green]MALVADA", style="green")
-    main(glob.glob(args.json_dir + "/*.json"), args.silent, args.vt_positives_threshold, progress)
+
+    reports = glob.glob(args.json_dir + "/*.json")
+
+    # Check if there are no reports within the directory
+    if not len(reports):
+        progress.console.log("Error: No reports found.")
+        progress.stop()
+        exit()
+
+    main(reports, args.silent, args.vt_positives_threshold, progress)
     if not args.silent:
         progress.console.rule("[bold green]MALVADA", style="green")
         progress.stop()

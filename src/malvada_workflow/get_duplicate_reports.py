@@ -131,11 +131,6 @@ def main(json_files: list, duplicates_strat: str, silent: bool, progress: Progre
 
     total_reports_in_folder = len(json_files)
 
-    # Check if there are no reports within the directory
-    if not total_reports_in_folder:
-        progress.console.log(f"Error: No reports found.")
-        exit()
-
     task = None
 
     if not silent:
@@ -200,7 +195,15 @@ if __name__ == "__main__":
                              "duplicates, should be 'first' or 'biggest'.")
         exit()
 
-    main(glob.glob(args.json_dir + "/*.json"), args.duplicates, args.silent, progress)
+    reports = glob.glob(args.json_dir + "/*.json")
+
+    # Check if there are no reports within the directory
+    if not len(reports):
+        progress.console.log("Error: No reports found.")
+        progress.stop()
+        exit()
+
+    main(reports, args.duplicates, args.silent, progress)
     if not args.silent:
         progress.console.rule("[bold green]MALVADA", style="green")
         progress.stop()

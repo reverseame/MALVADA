@@ -124,11 +124,6 @@ def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) 
 
     total_files = len(json_files)
 
-    # Check if there are no reports within the directory
-    if not total_files:
-        progress.console.log(f"Error: No reports found.")
-        exit()
-
     if not silent:
         progress.console.rule(
             "[bold dark_turquoise]Phase 4: AVClass labeling", style="dark_turquoise")
@@ -186,7 +181,16 @@ if __name__ == "__main__":
     if not args.silent:
         progress.start()
         progress.console.rule("[bold green]MALVADA", style="green")
-    main(glob.glob(args.json_dir+"/*.json"), args.silent, progress, args.workers)
+
+    reports = glob.glob(args.json_dir+"/*.json")
+
+    # Check if there are no reports within the directory
+    if not len(reports):
+        progress.console.log("Error: No reports found.")
+        progress.stop()
+        exit()
+
+    main(reports, args.silent, progress, args.workers)
     if not args.silent:
         progress.console.rule("[bold green]MALVADA", style="green")
         progress.stop()

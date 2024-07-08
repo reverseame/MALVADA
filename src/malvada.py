@@ -78,7 +78,7 @@ def main() -> None:
 
     # Check if there are no reports within the directory
     if not total_reports:
-        progress.console.log(f"Error: No reports found.")
+        progress.console.log("Error: No reports found.")
         exit()
 
     if not args.silent:
