@@ -1,6 +1,8 @@
 # MALVADA - A Windows Malware Execution Traces Dataset generation framework. 
 
-MALVADA is a framework that parses one or more [CAPE](https://github.com/kevoreilly/CAPEv2) `.json` reports, processes them in [different phases](https://github.com/reverseame/MALVADA/blob/main/src/malvada.py#L89), moves them into different folders and provides several statistics about their contents. The main objective of MALVADA is helping at generating datasets. Specifically, datasets of reports generated with CAPE *(although it can be extended to other sandboxing engines format)*.
+MALVADA is a framework that parses one or more [CAPE](https://github.com/kevoreilly/CAPEv2) `.json` reports, processes them in [different phases](https://github.com/reverseame/MALVADA/blob/main/src/malvada.py#L89), moves them into different folders and provides several statistics about their contents. 
+
+The main objective of MALVADA is helping at generating datasets. Specifically, datasets of reports generated with CAPE *(although it can be extended to other sandboxing engines format)*.
 
 ## Installation
 
@@ -53,6 +55,13 @@ MALVADA processes the reports in the following phases:
 
 ### Example
 Output after executing MALVADA with the [test_reports](./test_reports):
+
+First, extract the reports
+
+`$ 7z x test_reports.7z`
+
+Then, invoke MALVADA:
+
 `$ python3 malvada.py test_reports`
 
 ![MALVADA execution example](./doc/images/execution_example.png?raw=true "MALVADA Execution Example")
