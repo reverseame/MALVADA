@@ -51,8 +51,8 @@ options:
 MALVADA processes the reports in the following phases:
 1. Detect *incorrect* reports. That is, those that are poorly formatted for some reason (samples do not run, they crash, etc...).
 2. Remove duplicate reports (based on the SHA512 of the submitted sample).
-3. Sanitize and anonymize reports. That is, remove sensitive information and the default terms specified in `terms_to_anonymize.txt` .
-4. Add `avclass_labels` to the report. That is, parse the results from all VT vendors, transform them into valid input for [AVClass](https://github.com/malicialab/avclass) and invoke [AVClass](https://github.com/malicialab/avclass) itself. The AVClass consesus result is added in the key `avclass_detection`.
+3. Sanitize and anonymize reports. That is, remove sensitive information and the terms specified (by default) in `terms_to_anonymize.txt`.
+4. Add [AVClass](https://github.com/malicialab/avclass) result to the report. That is, parse the results from all VT vendors, transform them into valid input for [AVClass](https://github.com/malicialab/avclass) and invoke [AVClass](https://github.com/malicialab/avclass) itself. The AVClass consesus result is added in the key `avclass_detection`.
 5. Generate statistics.
 
 ### Example
