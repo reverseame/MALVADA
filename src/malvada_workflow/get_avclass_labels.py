@@ -157,7 +157,7 @@ def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) 
     try:
         os.rmdir('tmp')
     except Exception as e:
-        print(f"[!!] Error deleting 'tmp' directory:  {e} - {e.stderr}.\n[!!] Keeping the directory.")
+        print(f"[!!] Error deleting 'tmp' directory:\n\t{e} - {e.strerror}.\n[!!] Keeping the directory. MALVADA continues.")
 
 
     if not silent:
