@@ -1,6 +1,8 @@
 # WinMET (Windows Malware Execution Traces) Dataset
 
-Available at: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12737794.svg)](https://doi.org/10.5281/zenodo.12737794)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12737794.svg)](https://doi.org/10.5281/zenodo.12737794)
+
+Available at: (10.5281/zenodo.12737794)[https://doi.org/10.5281/zenodo.12737794].
 
 WinMET dataset contains the reports generated with CAPE sandbox after analyzing several malware samples. The reports are valid JSON files that contain the spawned processes, the sequence of WinAPI and system calls invoked by each process, their parameters, their return values, and OS accesed resources, amongst many others.
 
