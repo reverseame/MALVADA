@@ -154,7 +154,11 @@ def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) 
             progress.update(task, advance=1) if not silent else None
 
     # Delete tmp folder
-    os.rmdir('tmp')
+    try:
+        os.rmdir('tmp')
+    except Exception as e:
+        print(f"[!!] Error deleting 'tmp' directory:  {e} - {e.stderr}.\n[!!] Keeping the directory.")
+
 
     if not silent:
         progress.stop_task(task)
