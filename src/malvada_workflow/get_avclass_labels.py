@@ -111,7 +111,7 @@ def process_file(json_file: str) -> None:
         with open(json_file, "w") as f:
             json.dump(data, f, indent=2)
     except Exception as e:
-        print("[!!] Error adding AVClass label to {json_file}:\n\t"
+        print(f"[!!] Error adding AVClass label to original report file:\n\t"
               f"{e} - {e.strerror}.\n[!!] Skipping. MALVADA continues.")
 
 def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) -> None:
