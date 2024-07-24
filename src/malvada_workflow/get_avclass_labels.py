@@ -93,6 +93,9 @@ def process_file(json_file: str) -> None:
     # Invoke AVClass passing the temporal file as input and retrieve the output
     succ, output = run_avclass(tmp_file)
 
+    # Remove temporal file
+    os.remove(tmp_file)
+
     if succ:
         # Output is in the form: hash      label
         # So we .split() it and take the second argument
@@ -110,10 +113,6 @@ def process_file(json_file: str) -> None:
     except Exception as e:
         print("[!!] Error adding AVClass label to {json_file}:\n\t"
               f"{e} - {e.strerror}.\n[!!] Skipping. MALVADA continues.")
-
-    # Remove temporal file
-    os.remove(tmp_file)
-
 
 def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) -> None:
     """
