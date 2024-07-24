@@ -129,7 +129,7 @@ def main() -> None:
         progress.console.log(
             f"[+] Reports with VirusTotal errors: [green]{len(reports_with_vt_errors)}[/green]")
         progress.console.log(f"[+] Duplicate reports: [green]{len(dup_reports)}[/green]")
-        progress.console.log(f"[+] Undetected reports: [green]{len(undetected_reports)}[/green]")
+        progress.console.log(f"[+] Benign or undetected reports: [green]{len(undetected_reports)}[/green]")
         progress.console.log(
             f"[+] Reports with no CAPE consensus: [green]{len(no_consensus_reports)}[/green]")
         progress.console.log(

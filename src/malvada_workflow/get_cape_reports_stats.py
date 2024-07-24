@@ -216,7 +216,7 @@ class ReportStats:
         try:
             with open(RESULTS_DIR + "undetected_or_benign_reports.json", "w") as file:
                 if not self.silent:
-                    progress.console.log("[+] Writing benign or undetected reports to [medium_violet_red]"
+                    progress.console.log(f"[+] Writing benign or undetected ({self.vt_positives_threshold}/N or less VT detections) reports to [medium_violet_red]"
                                          f"{RESULTS_DIR}/undetected_or_benign_reports.json")
                 json.dump(undetected, file, indent=4, escape_forward_slashes=False)
         except Exception as e:
