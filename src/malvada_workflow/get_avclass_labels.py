@@ -114,6 +114,7 @@ def process_file(json_file: str) -> None:
         print(f"[!!] Error adding AVClass label to original report file:\n\t"
               f"{e} - {e.strerror}.\n[!!] Skipping. MALVADA continues.")
 
+
 def main(json_files: list, silent: bool, progress: Progress, workers: int = 10) -> None:
     """
     Main function, runs the AVClass analysis concurrently, using the number of workers provided.
