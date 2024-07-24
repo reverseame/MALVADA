@@ -104,8 +104,12 @@ def process_file(json_file: str) -> None:
         exit()
 
     # Re-write (update) original report file
-    with open(json_file, "w") as f:
-        json.dump(data, f, indent=2)
+    try:
+        with open(json_file, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print("[!!] Error adding AVClass label to {json_file}:\n\t"
+              f"{e} - {e.strerror}.\n[!!] Skipping. MALVADA continues.")
 
     # Remove temporal file
     os.remove(tmp_file)
