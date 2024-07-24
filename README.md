@@ -58,13 +58,7 @@ MALVADA processes the reports in the following phases:
 ### Example
 Output after executing MALVADA with the [test_reports](./test_reports):
 
-First, extract the reports
-
-`$ 7z x test_reports.7z`
-
-Then, invoke MALVADA:
-
-`$ python3 malvada.py test_reports`
+`$ python3 src/malvada.py test_reports -w 100` (100 workers, default is 10)
 
 ![MALVADA execution example](./doc/images/execution_example.png?raw=true "MALVADA Execution Example")
 
