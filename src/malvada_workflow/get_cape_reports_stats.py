@@ -140,7 +140,7 @@ class ReportStats:
         if 'avclass_detection' not in cape_report:
             if not self.silent:
                 print(f"[!!] ERROR parsing report {json_file}. No AVClass detection field found.")
-            exit()
+            return None
 
         avclass_label = cape_report['avclass_detection'].capitalize()
         if avclass_label != "(n/a)":
