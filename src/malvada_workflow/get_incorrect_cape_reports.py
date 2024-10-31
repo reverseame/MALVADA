@@ -171,8 +171,12 @@ def main(json_files: list, silent: bool, progress: Progress) -> tuple:
         progress.start_task(task)
 
     for json_file in json_files:
-        with open(json_file) as file:
-            cape_report = json.load(file)
+        try:
+            with open(json_file) as file:
+                cape_report = json.load(file)
+        except Exception as e:
+            print(f"[ERROR] while parsing {json_file} {e} . SKIPPING FILE [ERROR]")
+            continue
         stats.process_report(cape_report, json_file)
         progress.update(task, advance=1) if not silent else None
 
