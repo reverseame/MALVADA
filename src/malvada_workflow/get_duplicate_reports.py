@@ -51,7 +51,13 @@ def search_duplicates(json_files: list, progress: Progress, task: int, silent: b
 
     for json_file in json_files:
         with open(json_file) as file:
-            cape_report = json.load(file)
+            try:
+                cape_report = json.load(file)
+            except Exception as e:
+                    print(f"[!!] ERROR parsing report {json_file}."
+                          f"{e} [!!] Skipping report")
+                    continue
+
         progress.update(task, advance=1) if not silent else None
         report_id = cape_report['target']['file']['sha512']
 
