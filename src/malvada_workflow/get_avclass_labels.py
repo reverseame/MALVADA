@@ -101,7 +101,7 @@ def process_file(json_file: str) -> None:
         # So we .split() it and take the second argument
         # If the AVClass label contains "SINGLETON", there was no consensus. Otherwise, place the label per se
         avclass_label = output.split()[1].capitalize() if "SINGLETON" not in output.split()[1] else "(n/a)"
-        #data['avclass_detection'] = avclass_label.capitalize()
+        data['avclass_detection'] = avclass_label
     else:
         print(f"[!!] Error processing {json_file}: {output}")  # Shouldn't happen
         exit()
