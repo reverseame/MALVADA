@@ -18,8 +18,9 @@ from rich.progress import (
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MALVADA extractor. Utility script to facilitate the extraction of reports from'
-        'MALVADA-generated datasets based on AVCLASS / CAPEv2 labels.'
-        'Read the options for further important features of this script.')
+        ' MALVADA-generated datasets based on AVCLASS / CAPEv2 labels.'
+        ' Read the options for further important features of this script.'
+        ' This script expects AVClass and CAPE label mappings to be in the specified dataset_path.')
     parser.add_argument('dataset_path', type=str, help='The path to the dataset')
     parser.add_argument('-o', '--output_path', type=str, default='./extracted_reports',
                         help='The path to the output dir (default: ./extracted_reports).')
@@ -31,16 +32,16 @@ def parse_args():
     parser.add_argument('-i', '--include', type=str, default=None,
                         help='The families to include in the extraction in format <class-1>,'
                         '<class-2>, ... (spaces are optional, for example \'Reline, Disabler,'
-                        'Agenttesla\') If not specified all families are included (default: None).')
+                        ' Agenttesla\') If not specified all families are included (default: None).')
     parser.add_argument('-e', '--exclude', type=str, default=None,
                         help='The families to exclude in the extraction (only considered if all'
                         'families are included) (default: None).')
     parser.add_argument('-n', '--n-extract', type=int, default=100,
                         help='The number of samples to extract for each of the families included'
-                        '(default: 100). If all families are included, this number will'
+                        ' (default: 100). If all families are included, this number will'
                         'be used as the total of reports to extract.')
     parser.add_argument(
-        '-s', '--silent', help='Silent mode, only minimal ASCII output',
+        '-s', '--silent', help='Silent mode, only minimal ASCII output.',
         action='store_true', default=False)
 
     return parser.parse_args()
