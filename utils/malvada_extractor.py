@@ -19,16 +19,15 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description='MALVADA extractor. Utility script to facilitate the extraction of reports from'
         ' MALVADA-generated datasets based on AVCLASS / CAPEv2 labels.'
-        ' Read the options for further important features of this script.'
-        ' This script expects AVClass and CAPE label mappings to be in the specified dataset_path.')
+        ' Read the options for further important features of this script.')
     parser.add_argument('dataset_path', type=str, help='The path to the dataset')
     parser.add_argument('-o', '--output_path', type=str, default='./extracted_reports',
                         help='The path to the output dir (default: ./extracted_reports).')
     parser.add_argument('-c', '--criteria', type=str, default='r',
                         help='The criteria to choose the reports, either (r)andom (dataset will'
                         'be shuffled each time) or (f)irst found (default: r)')
-    parser.add_argument('-l', '--label', type=str, default='A',
-                        help='The labels to use, either (A)VCLASS or (C)APEv2 (default: A).')
+    parser.add_argument('-l', '--label', type=str,
+                        help='The path to the label mapping to use, either AVClass or CAPE. The label mapping files can be downloaded from the official WinMET URL: https://doi.org/10.5281/zenodo.12647555')
     parser.add_argument('-i', '--include', type=str, default=None,
                         help='The families to include in the extraction in format <class-1>,'
                         '<class-2>, ... (spaces are optional, for example \'Reline, Disabler,'
