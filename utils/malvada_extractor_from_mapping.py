@@ -1,10 +1,20 @@
 import os
 import json
-import glob
+import sys
 import shutil
 import argparse
-import logging
+import pathlib
 from random import shuffle
+from rich.progress import (
+    BarColumn,
+    Progress,
+    TextColumn,
+    TimeRemainingColumn,
+    SpinnerColumn,
+    TaskProgressColumn,
+    TimeElapsedColumn,
+)
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -15,23 +25,21 @@ def parse_args():
     parser.add_argument('-o', '--output_path', type=str, default='./extracted_reports',
                         help='The path to the output dir (default: ./extracted_reports).')
     parser.add_argument('-c', '--criteria', type=str, default='r',
-                        help='The criteria to choose the reports, either (r)andom (dataset will'
+                        help='The criteria to choose the reports, either (r)andom (dataset will '
                         'be shuffled each time) or (f)irst found (default: r)')
-    parser.add_argument('-l', '--label_mapping', type=str,
-                        help='The path to the label mapping to use, either AVClass or CAPE. The label mapping files can be downloaded from the official WinMET URL: https://doi.org/10.5281/zenodo.12647555')
+    parser.add_argument('-l', '--label-path', type=str,
+                        help='The path to the label mapping to use, either AVClass or CAPE. The '
+                        'label mapping files can be downloaded from the official WinMET URL:'
+                        'https://doi.org/10.5281/zenodo.12647555 or generated with the script'
+                        'utils/get_malware_family_report_mappings.py')
     parser.add_argument('-f', '--family', type=str,
-                        help='The family or families to extract. Specify multiple families with commas. Example: -f "Agenttesla, Virlock, Guloader"')
-    # parser.add_argument('-i', '--include', type=str, default=None,
-    #                     help='The families to include in the extraction in format <class-1>,'
-    #                     '<class-2>, ... (spaces are optional, for example \'Reline, Disabler,'
-    #                     ' Agenttesla\') If not specified all families are included (default: None).')
-    # parser.add_argument('-e', '--exclude', type=str, default=None,
-    #                     help='The families to exclude in the extraction (only considered if all'
-    #                     'families are included) (default: None).')
+                        help='The family or families to extract. Specify multiple families with '
+                        'commas. Example: -f "Agenttesla, Virlock, Guloader"')
     parser.add_argument('-n', '--n-extract', type=int, default=100,
                         help='The number of samples to extract for each of the families included'
-                        ' (default: 100). If all families are included, this number will'
-                        'be used as the total of reports to extract.')
+                        ' (default: 100).')
+    parser.add_argument('-s', '--silent', help='Silent mode, only minimal ASCII output.',
+                        action='store_true', default=False)
 
     return parser.parse_args()
 
@@ -56,52 +64,100 @@ def open_json_file(file_path: str) -> dict:
         print(f"Error: Failed to parse JSON file. {e}", file=sys.stderr)
         sys.exit(1)
 
+
 def get_label_reports(mapping: dict, family: str) -> dict | None:
     return mapping.get(family, None)
 
+
 def extract_reports_to_dir(reports: list, input_dir: str, output_dir: str, number: int) -> None:
     for report in reports[:number]:
-        shutil.copy2(f"{input_dir}/{report['report']}", output_dir)
+        shutil.copy2(pathlib.Path(input_dir) / report['report'], output_dir)
+
 
 def main():
     args = parse_args()
 
+    progress = Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        TaskProgressColumn(),
+        "•",
+        TimeElapsedColumn(),
+        "•",
+        TimeRemainingColumn(),
+    )
+
     # Check if the dataset_path exists and is a directory
     if not (os.path.exists(args.dataset_path) and os.path.isdir(args.dataset_path)):
-        print(
-            f"[!] Error: {args.dataset_path} does not exist or is not a directory.")
-        exit()
+        progress.console.log(
+            f"[red][!] Error:[/red] {args.dataset_path} does not exist or is not a directory.")
+        sys.exit(1)
 
     # Create output dir if it doesn't exist
     if not os.path.exists(args.output_path):
         os.mkdir(args.output_path)
     else:
-        print(f'[!] Warning:The output directory {args.output_path} already exists')
+        progress.console.log('[bold orange3][!] Warning:[/bold orange3] The output directory '
+                             f'{args.output_path} already exists')
 
     # Open and parse the JSON file
-    report_label_mapping = open_json_file(args.label_mapping)
+    report_label_mapping = open_json_file(args.label_path)
+    # total_reports = report_label_mapping['n_reports']
+
+    if not args.silent:
+        progress.console.rule(
+            "[bold green]MALVADA EXTRACTOR", style="green")
+
+    if not args.silent:
+        progress.console.log(f'[+] Families to extract: [green]{args.family}')
+        progress.console.log(f'[+] Number of reports to extract of each: [green]{args.n_extract}')
+        progress.console.rule('[bold green]Starting extraction[/bold green]', style='green')
+        task = progress.add_task('Extract reports', total=None)
+        progress.start_task(task)
+        progress.start()
+
+    else:
+        progress.console.log('Extracting reports...')
 
     # Retrieve all the requested families for extraction
     for label in args.family.split(','):
         label = label.strip()
         reports = get_label_reports(report_label_mapping, label)
-        if reports == None:
-            print(f'Family {label} not present in mapping file {args.label_mapping}, skipping.')
+        if reports is None:
+            progress.console.log(f'[bold orange3][!] Warning:[/bold orange3] Family {label} not '
+                                 f'present in mapping file {args.label_mapping}, skipping.')
             continue
-        number_of_reports_in_mapping = reports['n_reports']
+
+        n_reports_in_map = reports['n_reports']
         actual_report_list = reports['reports']
-        number_of_reports_to_exctract = args.n_extract
-        if number_of_reports_in_mapping < args.n_extract:
-            print(f'There are only {number_of_reports_in_mapping} {label} reports (you specified {args.n_extract}). Exctracting them.')
-            number_of_reports_to_exctract = number_of_reports_in_mapping
+        n_reports_to_extract = args.n_extract
+
+        if n_reports_in_map < args.n_extract:
+            progress.console.log(f'[bold orange3][!] Warning:[/bold orange3] There are only '
+                                 f'{n_reports_in_map} {label} reports.')
+            n_reports_to_extract = n_reports_in_map
 
         if args.criteria == 'r':
             shuffle(actual_report_list)
-            print(f'Extracting {number_of_reports_to_exctract} {label} reports after shuffle.')  
-            extract_reports_to_dir(actual_report_list, args.dataset_path, args.output_path, number_of_reports_to_exctract)
-        else:
-            print(f'Extracting first {number_of_reports_to_exctract} {label} reports.') 
-            extract_reports_to_dir(actual_report_list, args.dataset_path, args.output_path, number_of_reports_to_exctract)       
+            progress.console.log(
+                f'[+] Extracting {n_reports_to_extract} {label} reports after shuffle.')
+            extract_reports_to_dir(actual_report_list, args.dataset_path,
+                                   args.output_path, n_reports_to_extract)
+        else:  # args.criteria == 'f'
+            progress.console.log(f'[+] Extracting first {n_reports_to_extract} {label} reports.')
+            extract_reports_to_dir(actual_report_list, args.dataset_path,
+                                   args.output_path, n_reports_to_extract)
+
+        progress.update(task, advance=1)
+
+    if not args.silent:
+        progress.console.log(f'[+] Extracted the reports to [green]{args.output_path}[/green]')
+        progress.stop_task(task)
+        progress.stop()
+        progress.console.rule(
+            "[bold green]MALVADA EXTRACTOR", style="green")
+
 
 if __name__ == '__main__':
     main()
