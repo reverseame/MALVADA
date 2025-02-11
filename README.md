@@ -66,7 +66,21 @@ Output after executing MALVADA with the [test_reports](./test_reports):
 
 If you are using this software, please cite it as follows:
 ```
-TBD
+Raducu, R., Villagrasa-Labrador, A., Rodríguez, R. J., & Álvarez, P. (2025). MALVADA: A framework for generating datasets of malware execution traces. SoftwareX, 30.
+```
+```latex
+@article{RADUCU2025102082,
+title = {MALVADA: A framework for generating datasets of malware execution traces},
+journal = {SoftwareX},
+volume = {30},
+year = {2025},
+issn = {2352-7110},
+doi = {https://doi.org/10.1016/j.softx.2025.102082},
+url = {https://www.sciencedirect.com/science/article/pii/S2352711025000494},
+author = {Razvan Raducu and Alain Villagrasa-Labrador and Ricardo J. Rodríguez and Pedro Álvarez},
+keywords = {Dataset generation, Malware behavior, Execution traces, Malware classification},
+abstract = {Malware attacks have been growing steadily in recent years, making more sophisticated detection methods necessary. These approaches typically rely on analyzing the behavior of malicious applications, for example by examining execution traces that capture their runtime behavior. However, many existing execution trace datasets are simplified, often resulting in the omission of relevant contextual information, which is essential to capture the full scope of a malware sample’s behavior. This paper introduces MALVADA, a flexible framework designed to generate extensive datasets of execution traces from Windows malware. These traces provide detailed insights into program behaviors and help malware analysts to classify a malware sample. MALVADA facilitates the creation of large datasets with minimal user effort, as demonstrated by the WinMET dataset, which includes execution traces from approximately 10,000 Windows malware samples.}
+}
 ```
 
 More info in the "Cite this repository" GitHub contextual menu.
