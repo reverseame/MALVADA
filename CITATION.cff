@@ -27,7 +27,6 @@ preferred-citation:
   title: "MALVADA: A framework for generating datasets of malware execution traces"
   year: "2025"
   url: "https://www.sciencedirect.com/science/article/pii/S2352711025000494"
-date-released: "2025-02-01"  # Use an estimated date or remove if unknown
 keywords:
   - Dataset generation
   - Malware behavior
