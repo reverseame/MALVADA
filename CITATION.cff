@@ -1,6 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the following article."
-authors:
+preferred-citation:
+  type: article
+  authors:
   - family-names: "Raducu"
     given-names: "Razvan"
     affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
@@ -17,39 +19,20 @@ authors:
     given-names: "Pedro"
     affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
     orcid: "https://orcid.org/0000-0002-6584-7259"
-date-released: "TBD"
-url: "TBD"
-version: "1.0"
-doi: "TBD"
-keywords:
-  - malware
-  - dataset
-abstract: "TBD"
-preferred-citation:
-  type: article
-  authors:
-  - family-names: "Raducu"
-    given-names: "Razvan"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0002-8938-755X"
-  - family-names: "Alain"
-    given-names: "Villagrasa-Labrador"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0009-0005-8644-7376"
-  - family-names: "Ricardo J."
-    given-names: "Rodríguez"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0001-7982-0359"
-  - family-names: "Pedro"
-    given-names: "Álvarez"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0002-6584-7259"
-  doi: "TBD"
-  journal: "TBD"
-  month: TBD
+  doi: "https://doi.org/10.1016/j.softx.2025.102082"
+  journal: "SoftwareX"
+  month: February
   start: TBD # First page number
   end: TBD # Last page number
-  title: "TBD"
-  issue: TBD
-  volume: TBD
-  year: TBD
+  title: "MALVADA: A framework for generating datasets of malware execution traces"
+  issue: 30
+  volume: 30
+  year: 2025
+  url: "https://www.sciencedirect.com/science/article/pii/S2352711025000494"
+date-released: "TBD"
+keywords:
+  - Dataset generation
+  - Malware behavior
+  - Execution traces
+  - Malware classification
+abstract: "Malware attacks have been growing steadily in recent years, making more sophisticated detection methods necessary. These approaches typically rely on analyzing the behavior of malicious applications, for example by examining execution traces that capture their runtime behavior. However, many existing execution trace datasets are simplified, often resulting in the omission of relevant contextual information, which is essential to capture the full scope of a malware sample’s behavior. This paper introduces MALVADA, a flexible framework designed to generate extensive datasets of execution traces from Windows malware. These traces provide detailed insights into program behaviors and help malware analysts to classify a malware sample. MALVADA facilitates the creation of large datasets with minimal user effort, as demonstrated by the WinMET dataset, which includes execution traces from approximately 10,000 Windows malware samples."
