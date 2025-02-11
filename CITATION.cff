@@ -1,35 +1,33 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the following article."
 preferred-citation:
-  type: article
+  type: article-journal
   authors:
-  - family-names: "Raducu"
-    given-names: "Razvan"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0002-8938-755X"
-  - family-names: "Alain"
-    given-names: "Villagrasa-Labrador"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0009-0005-8644-7376"
-  - family-names: "Rodríguez"
-    given-names: "Ricardo J."
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0001-7982-0359"
-  - family-names: "Álvarez"
-    given-names: "Pedro"
-    affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
-    orcid: "https://orcid.org/0000-0002-6584-7259"
-  doi: "https://doi.org/10.1016/j.softx.2025.102082"
-  journal: "SoftwareX"
-  month: February
-  start: TBD # First page number
-  end: TBD # Last page number
+    - family-names: "Raducu"
+      given-names: "Razvan"
+      affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+      orcid: "0000-0002-8938-755X"
+    - family-names: "Villagrasa-Labrador"
+      given-names: "Alain"
+      affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+      orcid: "0009-0005-8644-7376"
+    - family-names: "Rodríguez"
+      given-names: "Ricardo J."
+      affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+      orcid: "0000-0001-7982-0359"
+    - family-names: "Álvarez"
+      given-names: "Pedro"
+      affiliation: "Department of Computer Science and Systems Engineering, University of Zaragoza"
+      orcid: "0000-0002-6584-7259"
+  doi: "10.1016/j.softx.2025.102082"
+  journal-title: "SoftwareX"
+  volume: "30"
+  issue: "30"
+  pages: "TBD"
   title: "MALVADA: A framework for generating datasets of malware execution traces"
-  issue: 30
-  volume: 30
-  year: 2025
+  year: "2025"
   url: "https://www.sciencedirect.com/science/article/pii/S2352711025000494"
-date-released: "TBD"
+date-released: "2025-02-01"  # Use an estimated date or remove if unknown
 keywords:
   - Dataset generation
   - Malware behavior
