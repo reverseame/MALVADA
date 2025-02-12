@@ -47,6 +47,11 @@ options:
   -a ANONIMIZE_TERMS, --anonimize-terms ANONIMIZE_TERMS
                         Replace the terms in the file provided with [REDACTED], one by line (default: 'terms_to_anonymize.txt').
 ```
+### Contextual overview of MALVADA
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/669a09e5-19ac-470f-9da9-9b15239d3806" alt="MALVADA_Contextual_Overview" width="50%">
+</p>
+
 ### Phases of MALVADA
 MALVADA processes the reports in the following phases:
 1. Detect *incorrect* reports. That is, those that are poorly formatted for some reason (samples do not run, they crash, etc...).
@@ -54,6 +59,11 @@ MALVADA processes the reports in the following phases:
 3. Sanitize and anonymize reports. That is, remove sensitive information and the terms specified (by default) in `terms_to_anonymize.txt`.
 4. Add [AVClass](https://github.com/malicialab/avclass) result to the report. That is, parse the results from all VT vendors, transform them into valid input for [AVClass](https://github.com/malicialab/avclass) and invoke [AVClass](https://github.com/malicialab/avclass) itself. The AVClass consesus result is added in the key `avclass_detection`.
 5. Generate statistics.
+
+### Internal architecture of MALVADA
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/576ac899-5748-443b-921a-3ccb5877b7ca" alt="MALVADA_Internal_Architecture" width="70%">
+</p>
 
 ### Example
 Output after executing MALVADA with the [test_reports](./test_reports):
