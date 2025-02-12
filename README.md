@@ -69,7 +69,7 @@ If you are using this software, please cite it as follows:
 Raducu, R., Villagrasa-Labrador, A., Rodríguez, R. J., & Álvarez, P. (2025). MALVADA: A framework for generating datasets of malware execution traces. SoftwareX, 30.
 ```
 ```latex
-@article{RADUCU2025102082,
+@article{RADUCU2025_MALVADA,
 title = {MALVADA: A framework for generating datasets of malware execution traces},
 journal = {SoftwareX},
 volume = {30},
@@ -90,3 +90,10 @@ Razvan Raducu
 Alain Villagrasa Labrador  
 Ricardo J. Rodríguez  
 Pedro Álvarez  
+
+## Funding support
+
+Part of this research was supported by the Spanish National Cybersecurity Institute (INCIBE) under *Proyectos Estratégicos de Ciberseguridad -- CIBERSEGURIDAD EINA UNIZAR* and by the Recovery, Transformation and Resilience Plan funds, financed by the European Union (Next Generation).
+
+![INCIBE_logos](https://github.com/user-attachments/assets/a83425c3-9546-4123-9bef-39a7ea52af09)
+
