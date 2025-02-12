@@ -49,7 +49,7 @@ options:
 ```
 ### Contextual overview of MALVADA
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/669a09e5-19ac-470f-9da9-9b15239d3806" alt="MALVADA_Contextual_Overview" width="50%">
+    <img src="https://github.com/user-attachments/assets/669a09e5-19ac-470f-9da9-9b15239d3806" alt="MALVADA_Contextual_Overview" width="70%">
 </p>
 
 ### Phases of MALVADA
